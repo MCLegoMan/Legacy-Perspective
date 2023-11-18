@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "perspective-legacy",
+	"version": "${version}",
+	"name": "LegacyPerspective",
+	"description": "Perspective is a Minecraft mod developed for the LegacyFabric Loader. It allows players to zoom, and hold perspectives.",
+	"authors": [
+		"MCLegoMan"
+	],
+	"contact": {
+		"homepage": "https://github.com/MCLegoMan",
+		"sources": "https://github.com/MCLegoMan/Legacy-Perspective"
+	},
+	"license": [
+		"LGPL-3.0-or-later"
+	],
+	"icon": "assets/perspective-legacy/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.mclegoman.perspective.legacy.client.PerspectiveLegacyClient"
+		]
+	},
+	"mixins": [
+		"perspective-legacy.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.8.9"
+	}
+}

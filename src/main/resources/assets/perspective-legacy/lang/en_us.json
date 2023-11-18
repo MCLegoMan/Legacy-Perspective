@@ -1,0 +1,6 @@
+{
+	"key.zoom": "Zoom",
+	"key.hold_perspective.back": "Hold Perspective (Back)",
+	"key.hold_perspective.front": "Hold Perspective (Front)",
+	"deathScreen.location": "Death Location: %s %s %s"
+}
