@@ -25,7 +25,5 @@
 		"perspective-legacy.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.14.22",
-		"minecraft": "~1.8.9"
 	}
 }

@@ -7,7 +7,7 @@
 
 package com.mclegoman.perspective.legacy.client.util;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.math.MathHelper;
 
 public class PerspectiveLegacyZoom {
 	public static int zoomPercentage = 80;
@@ -32,7 +32,7 @@ public class PerspectiveLegacyZoom {
 				}
 			}
 			else {
-				if (!(zoomPercentage <= -50)) {
+				if (!(zoomPercentage <= 0)) {
 					zoomPercentage -= 1;
 				}
 			}
@@ -44,6 +44,6 @@ public class PerspectiveLegacyZoom {
 		}
 	}
 	public static double limitFov(double fov) {
-		return Math.max(Math.max(0.1, fov), Math.min(fov, 110));
+		return MathHelper.clamp(fov, 0.1, 110);
 	}
 }

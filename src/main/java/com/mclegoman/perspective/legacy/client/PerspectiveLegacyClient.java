@@ -10,9 +10,12 @@ package com.mclegoman.perspective.legacy.client;
 import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyKeybindings;
 import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyPerspective;
 import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyZoom;
+import com.mclegoman.perspective.legacy.client.util.Shader;
 import net.fabricmc.api.ModInitializer;
 import net.legacyfabric.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import org.lwjgl.input.Mouse;
+
+import java.io.IOException;
 
 public class PerspectiveLegacyClient implements ModInitializer {
 	@Override
@@ -21,6 +24,11 @@ public class PerspectiveLegacyClient implements ModInitializer {
 		ClientTickEvents.END_CLIENT_TICK.register((client) -> {
 			PerspectiveLegacyZoom.tick();
 			PerspectiveLegacyPerspective.tick(client);
+			try {
+				Shader.tick();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 			if (Mouse.hasWheel()) {
 				if (Mouse.isButtonDown(2)) PerspectiveLegacyZoom.reset();
 			}
