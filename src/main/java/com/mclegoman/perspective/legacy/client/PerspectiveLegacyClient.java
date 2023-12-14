@@ -27,7 +27,7 @@ public class PerspectiveLegacyClient implements ModInitializer {
 			try {
 				Shader.tick();
 			} catch (IOException e) {
-				throw new RuntimeException(e);
+				if (Shader.postProcessor != null) Shader.postProcessor.disable();
 			}
 			if (Mouse.hasWheel()) {
 				if (Mouse.isButtonDown(2)) PerspectiveLegacyZoom.reset();

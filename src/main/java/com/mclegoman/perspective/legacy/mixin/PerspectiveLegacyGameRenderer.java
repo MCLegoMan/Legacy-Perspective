@@ -30,4 +30,11 @@ public class PerspectiveLegacyGameRenderer {
 			Shader.render(tickDelta);
 		}
 	}
+
+	@Inject(method = "onResized", at = @At(value = "TAIL"))
+	private void perspective$onResized(int width, int height, CallbackInfo ci) {
+		if (Shader.postProcessor != null) {
+			Shader.postProcessor.setupDimensions(width, height);
+		}
+	}
 }
