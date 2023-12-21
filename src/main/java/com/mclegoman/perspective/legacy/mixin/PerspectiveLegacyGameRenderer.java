@@ -8,12 +8,10 @@
 package com.mclegoman.perspective.legacy.mixin;
 
 import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyZoom;
-import com.mclegoman.perspective.legacy.client.util.Shader;
 import net.minecraft.client.render.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GameRenderer.class)
@@ -23,18 +21,5 @@ public class PerspectiveLegacyGameRenderer {
 		double f = cir.getReturnValue();
 		f *= PerspectiveLegacyZoom.getZoomMultiplier(tickDelta);
 		cir.setReturnValue((float)PerspectiveLegacyZoom.limitFov(f));
-	}
-	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/WorldRenderer;drawEntityOutlineFramebuffer()V", shift = At.Shift.AFTER))
-	private void perspective$render_game(float tickDelta, long nanoTime, CallbackInfo ci) {
-		if (Shader.shouldRenderShader()) {
-			Shader.render(tickDelta);
-		}
-	}
-
-	@Inject(method = "onResized", at = @At(value = "TAIL"))
-	private void perspective$onResized(int width, int height, CallbackInfo ci) {
-		if (Shader.postProcessor != null) {
-			Shader.postProcessor.setupDimensions(width, height);
-		}
 	}
 }
