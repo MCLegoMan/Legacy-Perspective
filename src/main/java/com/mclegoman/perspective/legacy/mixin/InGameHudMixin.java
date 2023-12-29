@@ -7,17 +7,16 @@
 
 package com.mclegoman.perspective.legacy.mixin;
 
-import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyPerspective;
-import net.minecraft.client.gui.hud.InGameHud;
+import com.mclegoman.perspective.legacy.client.util.HoldPerspective;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(InGameHud.class)
-public class PerspectiveLegacyInGameHud {
+@Mixin(net.minecraft.client.gui.hud.InGameHud.class)
+public class InGameHudMixin {
 	@Inject(method = "render", at = @At("HEAD"), cancellable = true)
 	private void render(float tickDelta, CallbackInfo ci) {
-		if (PerspectiveLegacyPerspective.isHoldingPerspective()) ci.cancel();
+		if (HoldPerspective.isHoldingPerspective()) ci.cancel();
 	}
 }

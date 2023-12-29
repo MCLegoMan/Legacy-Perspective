@@ -6,9 +6,10 @@
 		"defaultRequire": 1
 	},
 	"client": [
-		"PerspectiveDeathScreenMixin",
-		"PerspectiveLegacyGameRenderer",
-		"PerspectiveLegacyInGameHud",
-		"PerspectivePlayerInventoryMixin"
+		"MinecraftClientMixin",
+		"DeathScreenMixin",
+		"GameRendererMixin",
+		"InGameHudMixin",
+		"PlayerInventoryMixin"
 	]
 }

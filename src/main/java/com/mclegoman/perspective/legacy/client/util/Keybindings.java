@@ -10,7 +10,7 @@ package com.mclegoman.perspective.legacy.client.util;
 import net.legacyfabric.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 
-public class PerspectiveLegacyKeybindings {
+public class Keybindings {
 	public static final KeyBinding ZOOM_KEY;
 	public static final KeyBinding HOLD_PERSPECTIVE_FRONT;
 	public static final KeyBinding HOLD_PERSPECTIVE_BACK;

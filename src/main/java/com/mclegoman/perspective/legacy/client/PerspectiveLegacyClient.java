@@ -7,19 +7,19 @@
 
 package com.mclegoman.perspective.legacy.client;
 
-import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyKeybindings;
-import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyPerspective;
-import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyZoom;
+import com.mclegoman.perspective.legacy.client.util.Keybindings;
+import com.mclegoman.perspective.legacy.client.util.HoldPerspective;
+import com.mclegoman.perspective.legacy.client.util.Zoom;
 import net.fabricmc.api.ModInitializer;
 import net.legacyfabric.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
 public class PerspectiveLegacyClient implements ModInitializer {
 	@Override
 	public void onInitialize() {
-		PerspectiveLegacyKeybindings.init();
+		Keybindings.init();
 		ClientTickEvents.END_CLIENT_TICK.register((client) -> {
-			PerspectiveLegacyZoom.tick();
-			PerspectiveLegacyPerspective.tick(client);
+			Zoom.tick();
+			HoldPerspective.tick(client);
 		});
 	}
 }

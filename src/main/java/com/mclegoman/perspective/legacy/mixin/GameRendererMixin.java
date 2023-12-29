@@ -7,7 +7,7 @@
 
 package com.mclegoman.perspective.legacy.mixin;
 
-import com.mclegoman.perspective.legacy.client.util.PerspectiveLegacyZoom;
+import com.mclegoman.perspective.legacy.client.util.Zoom;
 import net.minecraft.client.render.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GameRenderer.class)
-public class PerspectiveLegacyGameRenderer {
+public class GameRendererMixin {
 	@Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
 	private void getFov(float tickDelta, boolean changingFov, CallbackInfoReturnable<Float> cir) {
 		double f = cir.getReturnValue();
-		f *= PerspectiveLegacyZoom.getZoomMultiplier(tickDelta);
-		cir.setReturnValue((float)PerspectiveLegacyZoom.limitFov(f));
+		f *= Zoom.getZoomMultiplier(tickDelta);
+		cir.setReturnValue((float) Zoom.limitFov(f));
 	}
 }

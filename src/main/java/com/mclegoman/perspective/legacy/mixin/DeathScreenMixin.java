@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(DeathScreen.class)
-public class PerspectiveDeathScreenMixin extends Screen {
+public class DeathScreenMixin extends Screen {
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/Screen;render(IIF)V"))
 	private void render(int mouseX, int mouseY, float tickDelta, CallbackInfo ci){
 		this.drawCenteredString(this.textRenderer, I18n.translate("deathScreen.location", this.client.player.getBlockPos().getX(), this.client.player.getBlockPos().getY(), this.client.player.getBlockPos().getZ()), this.width / 2, 115, 16777215);
