@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.4-SNAPSHOT'
 	id 'legacy-looming' version '1.4-SNAPSHOT'
+	id "com.github.breadmoirai.github-release" version "2.4.1"
 	id 'maven-publish'
 }
 
@@ -59,4 +60,24 @@ publishing {
 
 	repositories {
 	}
+}
+
+githubRelease {
+	token rootProject.file(".env").text.readLines().get(0).replace("GITHUB=", "").replace("\"", "")
+	owner "MCLegoMan"
+	repo "Legacy-Perspective"
+	tagName "${project.github_tag}"
+	targetCommitish "${project.github_branch}"
+	releaseName "${project.title}"
+	generateReleaseNotes false
+	body rootProject.file("CHANGELOG.md").text
+	draft false
+	if (project.version_type == "release") prerelease false
+	else prerelease true
+	releaseAssets tasks.remapJar
+	allowUploadToExisting.set false
+	overwrite false
+	dryRun false
+	apiEndpoint "https://api.github.com"
+	client
 }
